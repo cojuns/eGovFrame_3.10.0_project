@@ -3,12 +3,13 @@
 <%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>  
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>부서목록</title>
+<title>Insert title here</title>
 </head>
 
 <style>
@@ -26,28 +27,30 @@ th,td {
 
 <body>
 
+<form name="frm" method="post" action="deptModifySave.do">
 <table>
-
-	<caption>부서목록</caption>
 	<tr>
 		<th>부서번호</th>
-		<th>부서이름</th>
-		<th>부서위치</th>
+		<td><input type="text" name="deptno" value="${vo.deptno }" readonly></td>
 	</tr>
 	
-	<c:forEach var="result" items="${resultList}" varStatus="status">
-  		<tr>
-  			<td>${result.deptno}</td>
-  			<td><a href="deptDetail.do?deptno=${result.deptno }">${result.dname}</a></td>
-  			<td>${result.loc}</td>
-  		</tr>
-	</c:forEach>
+	<tr>
+		<th>부서이름</th>
+		<td><input type="text" name="dname" value="${vo.dname }"></td>
+	</tr>
 	
+	<tr>
+		<th>부서위치</th>
+		<td><input type="text" name="loc" value="${vo.loc }"></td>
+	</tr>
 	
+	<tr>
+		<th colspan="2">
+		<button type="submit">저장</button>
+		</th>
+	</tr>
 	
-</table><br>
-
-<button type="button" onclick="location='deptWrite.do'">부서 추가</button>
+</table>
 
 </body>
 </html>

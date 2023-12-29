@@ -20,4 +20,19 @@ public class DeptDAO extends EgovAbstractDAO {
 		return list("deptDAO.selectList", vo);
 	}
 
+	public DeptVO selectDeptDetail(int deptno) {
+		// TODO Auto-generated method stub
+		return (DeptVO) select("deptDAO.selectDeptDetail", deptno);
+	}
+
+	public int deleteDept(int deptno) {
+		// TODO Auto-generated method stub
+		return delete("deptDAO.deleteDept", deptno);
+	}
+
+	public int updateDept(DeptVO vo) {
+		// TODO Auto-generated method stub
+		return update("deptDAO.updateDept", vo);
+	}
+
 }
