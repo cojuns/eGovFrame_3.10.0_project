@@ -25,4 +25,19 @@ public class CodeDAO extends EgovAbstractDAO{
 		return (int)select("codeDAO.selectCodesCount", vo);
 	}
 
+	public int deleteCodes(int code) {
+		// TODO Auto-generated method stub
+		return delete("codeDAO.deleteCodes", code);
+	}
+
+	public CodeVO selectCodesDetail(int code) {
+		// TODO Auto-generated method stub
+		return (CodeVO)select("codeDAO.selectCodesDetail", code);
+	}
+
+	public int updateCodes(CodeVO code) {
+		// TODO Auto-generated method stub
+		return update("codeDAO.updateCodes", code);
+	}
+
 }

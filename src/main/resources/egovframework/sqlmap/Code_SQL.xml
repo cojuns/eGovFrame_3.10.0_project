@@ -28,4 +28,17 @@
 		select count(*) as cnt from codes
 	</select>
 	
+	<delete id="codeDAO.deleteCodes">
+		delete from codes where code = #code#
+	</delete>
+	
+	<select id="codeDAO.selectCodesDetail" resultClass="codeVO">
+		select * from codes where code = #code#	
+	</select>
+	
+	<update id="codeDAO.updateCodes">
+		update codes set gid = #gid#, name = #name#
+					     where code= #code#
+	</update>
+	
 </sqlMap>

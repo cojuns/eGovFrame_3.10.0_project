@@ -33,4 +33,24 @@ public class CodeServiceImpl implements CodeService {
 		return codeDAO.selectCodesCount(vo);
 	}
 
+	@Override
+	public int deleteCodes(int code) throws Exception {
+		// TODO Auto-generated method stub
+		return codeDAO.deleteCodes(code);
+	}
+
+	@Override
+	public CodeVO selectCodesDetail(int code) throws Exception {
+		// TODO Auto-generated method stub
+		return codeDAO.selectCodesDetail(code);
+	}
+
+	@Override
+	public int updateCodes(CodeVO code) throws Exception {
+		// TODO Auto-generated method stub
+		return codeDAO.updateCodes(code);
+	}
+	
+	
+
 }
