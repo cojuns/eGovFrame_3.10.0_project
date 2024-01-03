@@ -8,4 +8,6 @@
 	
 	<sqlMap resource="egovframework/sqlmap/Code_SQL.xml"/>
 	
+	<sqlMap resource="egovframework/sqlmap/Board_SQL.xml"/>
+	
 </sqlMapConfig>
