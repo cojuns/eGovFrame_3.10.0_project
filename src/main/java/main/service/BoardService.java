@@ -10,5 +10,7 @@ public interface BoardService {
 	// 게시판 화면 목록
 	public List<?> selectNBoardList(BoardVO vo) throws Exception;
 	
+	// 게시판 totla 갯수 ( 페이징 사용 )
+	public int selectNBoardTotal(BoardVO vo) throws Exception;
 	
 }

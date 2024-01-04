@@ -18,9 +18,24 @@
 	</insert>
 	
 	<select id="boardDAO.selectNBoardList" resultClass="egovMap">
-		select unq ,title, name, hits, rdate
+	
+	<![CDATA[
+				select b.* from (
+        select row_number() over (order by unq desc) as rn, a.* from (
+        
+		 select	unq ,title, name, hits, DATE_FORMAT(rdate, '%Y-%m-%d')as rdate
 		 from nboard
-		 order by unq desc
+
+		 order by unq desc ) as a ) as b
+         
+         where rn >= #startIndex# and rn <= #endIndex#
+         
+         ]]>
+         
+	</select>
+	
+	<select id="boardDAO.selectNBoardTotal" resultClass="java.lang.Integer">
+		select count(*) total from nboard
 	</select>
 	
 </sqlMap>

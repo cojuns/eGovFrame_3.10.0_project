@@ -28,4 +28,10 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.selectNBoardList(vo);
 	}
 
+	@Override
+	public int selectNBoardTotal(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return boardDAO.selectNBoardTotal(vo);
+	}
+
 }

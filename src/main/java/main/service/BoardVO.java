@@ -10,7 +10,31 @@ public class BoardVO {
 	public int hits;
 	public String rdate;
 	
+	private int viewPage = 1;
+	private int startIndex = 1;
+	private int endIndex = 10;
 	
+	
+	
+	
+	public int getStartIndex() {
+		return startIndex;
+	}
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
+	}
+	public int getEndIndex() {
+		return endIndex;
+	}
+	public void setEndIndex(int endIndex) {
+		this.endIndex = endIndex;
+	}
+	public int getViewPage() {
+		return viewPage;
+	}
+	public void setViewPage(int viewPage) {
+		this.viewPage = viewPage;
+	}
 	public int getUnq() {
 		return unq;
 	}
