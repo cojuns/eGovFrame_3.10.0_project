@@ -4,7 +4,9 @@
 <%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>     
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,19 +63,19 @@
 
 <body>
 
-		<div class="div1">일반게시판 목록</div>
-		<div class="div2">Total : ${total }</div>
-		<div class="div2">
-			<form name="searchFrm" method="post" action="boardList.do">
-			<select name="searchGubun" id="searchGubun">
-				<option value="title">제목</option>
-				<option value="name">글쓴이</option>
-				<option value="content">내용</option>
-			</select>
-			<input type="text" name="searchText" id="searchText" />
-			<button type="submit" >검색</button>
-			</form>
-		</div>
+    <div class="div1">일반게시판 목록</div>
+    <div class="div2">Total : ${total }</div>
+    <div class="div2">
+        <form name="searchFrm" method="post" action="boardList.do">
+        <select name="searchGubun" id="searchGubun">
+            <option value="title" ${param.searchGubun == 'title' ? 'selected' : ''}>제목</option>
+            <option value="name" ${param.searchGubun == 'name' ? 'selected' : ''}>글쓴이</option>
+            <option value="content" ${param.searchGubun == 'content' ? 'selected' : ''}>내용</option>
+        </select>
+        <input type="text" name="searchText" id="searchText" value="${param.searchText}"/>
+        <button type="submit">검색</button>
+        </form>
+    </div>
 
 <table>
 	
@@ -101,16 +103,22 @@
 	</c:forEach>
 </table>
 	
-	<!-- 페이지 번호 처리 -->
-	<div style="width:600px; margin-top:5px; text-align:center;">
-		
-		<c:forEach var="i" begin="1" end="${totalPage }">
-			
-			<a href="boardList.do?viewPage=${i }"> ${i }</a> 
-			
-		</c:forEach>
-		
-	</div>
+<!-- 페이지 번호 처리 -->
+<div style="width:600px; margin-top:5px; text-align:center;">
+    <c:forEach var="i" begin="1" end="${totalPage}">
+        <c:choose>
+            <c:when test="${not empty param.searchGubun and not empty param.searchText}">
+                <!-- 검색 조건이 있는 경우 -->
+                <a href="boardList.do?viewPage=${i}&searchGubun=${param.searchGubun}&searchText=${fn:escapeXml(param.searchText)}"> ${i }</a>
+            </c:when>
+            <c:otherwise>
+                <!-- 검색 조건이 없는 경우 -->
+                <a href="boardList.do?viewPage=${i}"> ${i }</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+</div>
+
 
 
 <div style="width:600px; margin-top:5px; text-align:right;">

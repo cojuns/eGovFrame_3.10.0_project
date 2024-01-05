@@ -48,7 +48,7 @@ public class BoardController {
 	@RequestMapping("/boardList.do")
 	public String selectNBoardList(BoardVO vo, ModelMap model) throws Exception{
 		
-		int unit = 5;
+		int unit = 10;
 		
 		int total = boardService.selectNBoardTotal(vo);
 		

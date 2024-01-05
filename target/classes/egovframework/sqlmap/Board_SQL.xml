@@ -19,24 +19,37 @@
 	
 	<select id="boardDAO.selectNBoardList" resultClass="egovMap">
 	
-	<![CDATA[
+	
 				select b.* from (
         select row_number() over (order by unq desc) as rn, a.* from (
         
 		 select	unq ,title, name, hits, DATE_FORMAT(rdate, '%Y-%m-%d')as rdate
 		 from nboard
-		 	where #searchGubun# like '%' || #searchText# || '%'
-
+		 
+		 	<isNotNull property="searchGubun">
+		 		<isNotNull property="searchText">
+		 	where $searchGubun$ like '%$searchText$%'
+		 		</isNotNull>
+			</isNotNull>
+			
 		 order by unq desc ) as a ) as b
-         
+		 
+         <![CDATA[
          where rn >= #startIndex# and rn <= #endIndex#
-         
          ]]>
          
 	</select>
 	
 	<select id="boardDAO.selectNBoardTotal" resultClass="java.lang.Integer">
+		
 		select count(*) total from nboard
+			<isNotNull property="searchGubun">
+		 		<isNotNull property="searchText">
+		 		where $searchGubun$ like '%$searchText$%'
+		 		</isNotNull>
+			</isNotNull>
+		
+		
 	</select>
 	
 </sqlMap>
