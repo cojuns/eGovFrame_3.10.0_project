@@ -10,13 +10,31 @@ public class BoardVO {
 	public int hits;
 	public String rdate;
 	
+	//페이징
 	private int viewPage = 1;
 	private int startIndex = 1;
 	private int endIndex = 10;
 	
+	//검색
+	private String searchGubun;
+	private String searchText;
 	
 	
 	
+	
+	
+	public String getSearchGubun() {
+		return searchGubun;
+	}
+	public void setSearchGubun(String searchGubun) {
+		this.searchGubun = searchGubun;
+	}
+	public String getSearchText() {
+		return searchText;
+	}
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
+	}
 	public int getStartIndex() {
 		return startIndex;
 	}

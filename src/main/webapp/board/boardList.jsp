@@ -44,16 +44,39 @@
 			width: 98%;
 			height: 100px;
 	}
+	
+	.div1 {
+	width: 600px;
+	text-align: center;
+	font-size: 15pt;
+	}
+	
+	.div2 {
+	width: 600px;
+	text-align: lept;
+	font-size: 8pt;
+	}
 
 </style>
 
 <body>
 
+		<div class="div1">일반게시판 목록</div>
+		<div class="div2">Total : ${total }</div>
+		<div class="div2">
+			<form name="searchFrm" method="post" action="boardList.do">
+			<select name="searchGubun" id="searchGubun">
+				<option value="title">제목</option>
+				<option value="name">글쓴이</option>
+				<option value="content">내용</option>
+			</select>
+			<input type="text" name="searchText" id="searchText" />
+			<button type="submit" >검색</button>
+			</form>
+		</div>
+
 <table>
-	<caption>
-		<div>일반게시판 목록</div>
-		<div>Total : ${total }</div>
-	</caption>
+	
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -62,7 +85,7 @@
 			<th>조회수</th>
 		</tr>
 	
-	<c:set var="cnt" value="1" /> <!-- 번호에서 사용 할 변수 -->
+	<c:set var="cnt" value="${rowNumber }" /> <!-- 번호에서 사용 할 변수 -->
 		
 	<c:forEach var="result" items="${resultList }">
 		<tr align="center">
@@ -73,7 +96,8 @@
 			<td width="15%"><c:out value="${result.hits }" /></td>
 		</tr>
 		
-	<c:set var="cnt" value="${cnt+1 }" /> <!-- 반복문으로 1씩 증가 -->	
+	<c:set var="cnt" value="${cnt-1 }" /> <!-- 반복문으로 1씩 증가 -->	
+	
 	</c:forEach>
 </table>
 	

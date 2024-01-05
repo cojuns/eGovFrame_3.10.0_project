@@ -25,6 +25,7 @@
         
 		 select	unq ,title, name, hits, DATE_FORMAT(rdate, '%Y-%m-%d')as rdate
 		 from nboard
+		 	where #searchGubun# like '%' || #searchText# || '%'
 
 		 order by unq desc ) as a ) as b
          
