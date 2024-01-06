@@ -1,11 +1,13 @@
 package main.web;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -102,6 +104,24 @@ public class BoardController {
 		model.addAttribute("rowNumber", startRowNo);
 		
 		return "board/boardList";
+	}
+	
+	@RequestMapping("/boardDetail.do")
+	public String selectNBoardDetail(BoardVO vo, ModelMap model) throws Exception {
+		
+		// 조회수 
+		boardService.updateNBoardHits(vo.getUnq());
+		
+		// 상세보기
+		BoardVO boardVO = boardService.selectNBoardDetail(vo.getUnq());
+		
+		String content = boardVO.getContent(); // \n
+		boardVO.setContent(content.replace("\n", "<br>" ));
+		
+		
+		model.addAttribute("boardVO", boardVO);
+		
+		return "board/boardDetail";
 	}
 	
 }

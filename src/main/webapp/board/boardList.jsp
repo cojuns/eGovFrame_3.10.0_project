@@ -91,8 +91,15 @@
 		
 	<c:forEach var="result" items="${resultList }">
 		<tr align="center">
+			
 			<td width="15%"><c:out value="${cnt }" /></td>
-			<td align="left" width="40%"><c:out value="${result.title }" /></td>
+			
+			<td align="left" width="40%">
+			<a href="boardDetail.do?unq=${result.unq }">
+			<c:out value="${result.title }" />
+			</a>
+			</td>
+			
 			<td width="15%"><c:out value="${result.name }" /></td>
 			<td width="15%"><c:out value="${result.rdate }" /></td>
 			<td width="15%"><c:out value="${result.hits }" /></td>

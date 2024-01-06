@@ -52,4 +52,16 @@
 		
 	</select>
 	
+	<select id="boardDAO.selectNBoardDetail" resultClass="boardVO">
+		select unq, title, name, content, DATE_FORMAT(rdate, '%Y-%m-%d')as rdate 
+		from nboard 
+		where unq = #unq#
+	</select>
+	
+	<update id="boardDAO.updateNBoardHits">
+		update nboard
+		set hits = hits + 1
+		where unq = #unq#
+	</update>
+	
 </sqlMap>
