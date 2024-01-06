@@ -64,4 +64,18 @@
 		where unq = #unq#
 	</update>
 	
+	<update id="boardDAO.updateNBoard">
+	
+		update nboard
+		set title = #title#, name = #name#, content = #content#
+		where unq = #unq#
+	
+	</update>
+	
+	<select id="boardDAO.selectNBoardPass" resultClass="java.lang.Integer">
+		select count(*) 
+		from nboard
+		where unq = #unq# and pass = #pass#
+	</select>
+	
 </sqlMap>

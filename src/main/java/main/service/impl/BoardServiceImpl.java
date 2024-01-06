@@ -46,4 +46,16 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.updateNBoardHits(unq);
 	}
 
+	@Override
+	public int updateNBoard(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return boardDAO.updateNBoard(vo);
+	}
+
+	@Override
+	public int selectNBoardPass(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return boardDAO.selectNBoardPass(vo);
+	}
+
 }

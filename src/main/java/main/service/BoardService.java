@@ -19,4 +19,10 @@ public interface BoardService {
 	// 조회수 증가
 	public int updateNBoardHits(int unq) throws Exception;
 	
+	// 수정 ( 업데이트 ) 처리
+	public int updateNBoard(BoardVO vo) throws Exception;
+	
+	// 수정 패스워드 체크
+	public int selectNBoardPass(BoardVO vo) throws Exception;
+	
 }

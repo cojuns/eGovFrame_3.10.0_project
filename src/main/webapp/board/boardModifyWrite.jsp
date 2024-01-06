@@ -3,13 +3,7 @@
 <%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-<% pageContext.setAttribute("newline", "\n"); %>
-<c:set var="content" value="${fn:replace(boardVO.content, newline, '<br>') }"  />
-<!-- 개행 문자(\n)를 HTML에서 사용 가능한 줄바꿈(<br>)으로 변경 --> 
- 
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,18 +50,15 @@ th,td {
 
 <script>
 
-$(function(){
 
-	$("#title").val("제목입력");
-	
-})
 
 
 //jquery 방식
 function fn_submit() {
 	
+	$("#title").val($.trim($("#title").val()) );
+	
 	// 앞뒤 공백 제거 $.trim ( 자바스크립트는 없고 jquery만 지원 )
-
 	if( $.trim($("#title").val()) == ""){
 
 		
@@ -77,7 +68,6 @@ function fn_submit() {
 		
 	}
 	
-	$("#title").val($.trim($("#title").val()) );
 	
 	if( $.trim($("#pass").val()) == ""){
 		
@@ -94,19 +84,22 @@ function fn_submit() {
 	var formData = $("#frm").serialize();
 	
 	$.ajax({ 
-		
+		// 전송 전 세팅
 		type:"POST",
 		data:formData,
-		url:"boardWriteSave.do",
+		url:"boardModifySave.do",
 		dataType:"text", // 리턴 타입 
 		
-		success:function(data){ // controller에서 => "ok"값을 던져줬으면 성공
-			
-			if(data == "ok"){
-				alert("저장완료");
+		// 전송 후 세팅
+		success:function(result){ // controller에서 => "ok"값을 던져줬으면 성공
+			if(result == "1"){
+				alert("수정완료");
 				location="boardList.do"
-			}else{
-				alert("저장실패");
+			}else if(result == "-1"){
+				alert("암호가 일치하지 않습니다.")
+			}
+			else{
+				alert("수정실패\n관리자에게 문의");
 			}
 			
 		},
@@ -143,39 +136,33 @@ function fn_submit() {
 <body>
 
 <form id="frm">  <!-- method="post" action="boardWriteSave.do" 비동기 방식에는 필요없음 -->
-<table>
-	<caption>게시판 상세</caption>
-	
-	<tr>
-		<th width="20%">제목</th>
-		<td width="80%">${boardVO.title }</td>
-	</tr>
 
-	<tr>
-		<th>글쓴이</th>
-		<td>${boardVO.name }</td>
-	</tr>
+<!-- 사용자한태는 안보이게 히든 처리 -->
+<input type="hidden" name="unq" value="${boardVO.unq }" />
+
+<table>
+	<caption>게시판 수정</caption>
 	
 	<tr>
-		<th>내용</th>
-		<td height="50">
-		<!-- 개행 자바 코드 사용  -->
-		${boardVO.content }
-		<!-- 개행 JSTL  -->
-		<%-- ${content } --%>
-		</td>
+		<th width="20%"><label for="title">제목</label></th>
+		<td width="80%"><input type="text" name="title" id="title" class="input1" value="${boardVO.title }"/></td>
 	</tr>
-	
-	<tr>
-		<th>등록일</th>
-		<td>${boardVO.rdate }</td>
+		<tr>
+		<th><label for="pass">암호</label></th>
+		<td><input type="password" name="pass" id="pass" /></td>
 	</tr>
-	
+		<tr>
+		<th><label for="name">글쓴이</label></th>
+		<td><input type="text" name="name" id="name" value="${boardVO.name }" /></td>
+	</tr>
+		<tr>
+		<th><label for="content">내용</label></th>
+		<td><textarea name="content" id="content" class="textarea">${boardVO.content }</textarea></td>
+	</tr>
 		<tr>
 		<th colspan="2">
-		<button type="button" onclick="location='boardList.do'">목록</button>
-		<button type="button" onclick="location='boardModifyWrite.do?unq=${boardVO.unq}'">수정</button>
-		<button type="button" onclick="location='passWrite.do?unq=${boardVO.unq}'">삭제</button>
+		<button type="submit" onclick="fn_submit() ;return false;">저장</button>
+		<button type="reset">취소</button>
 		</th>
 		
 	</tr>
