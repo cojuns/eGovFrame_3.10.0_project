@@ -58,4 +58,10 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.selectNBoardPass(vo);
 	}
 
+	@Override
+	public int deleteNBoard(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return boardDAO.deleteNBoard(vo);
+	}
+
 }

@@ -25,4 +25,7 @@ public interface BoardService {
 	// 수정 패스워드 체크
 	public int selectNBoardPass(BoardVO vo) throws Exception;
 	
+	// 삭제처리
+	public int deleteNBoard(BoardVO vo) throws Exception;
+	
 }

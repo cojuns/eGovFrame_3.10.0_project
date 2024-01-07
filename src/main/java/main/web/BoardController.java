@@ -152,4 +152,34 @@ public class BoardController {
 		
 	}
 	
+	@RequestMapping("/passWrite.do")
+	public String passWrite(int unq, ModelMap model) {
+		
+		
+		model.addAttribute("unq", unq);
+		
+		return "board/passWrite";
+	}
+	
+	/*
+	 * @RequestMapping("/boardDelete.do")
+	 * 
+	 * @ResponseBody public String deleteBoard(BoardVO vo) throws Exception {
+	 * 
+	 * int result = 0;
+	 * 
+	 * // 암호 일치 검사 int count = boardService.selectNBoardPass(vo); // 1 = true
+	 * 
+	 * if(count == 1) {
+	 * 
+	 * 
+	 * }
+	 * 
+	 * int result = boardService.deleteNBoard(vo); // 1 = true
+	 * 
+	 * 
+	 * 
+	 * return ""; }
+	 */
+	
 }
