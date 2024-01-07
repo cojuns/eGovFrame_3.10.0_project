@@ -45,7 +45,8 @@
 					
 					if(result == "1"){
 						alert("삭제완료");
-						location="boardList.do"
+						window.close();
+						window.opener.location.href="boardList.do"// 부모창 URL 변경
 					}else if(result == "-1") {
 						
 						alert("암호가 일치하지 않습니다.")

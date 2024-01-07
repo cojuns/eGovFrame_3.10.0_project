@@ -161,25 +161,24 @@ public class BoardController {
 		return "board/passWrite";
 	}
 	
-	/*
-	 * @RequestMapping("/boardDelete.do")
-	 * 
-	 * @ResponseBody public String deleteBoard(BoardVO vo) throws Exception {
-	 * 
-	 * int result = 0;
-	 * 
-	 * // 암호 일치 검사 int count = boardService.selectNBoardPass(vo); // 1 = true
-	 * 
-	 * if(count == 1) {
-	 * 
-	 * 
-	 * }
-	 * 
-	 * int result = boardService.deleteNBoard(vo); // 1 = true
-	 * 
-	 * 
-	 * 
-	 * return ""; }
-	 */
+	@RequestMapping("/boardDelete.do")
+	@ResponseBody
+	public String deleteBoard(BoardVO vo) throws Exception {
+		
+		int result = 0;
+		
+		// 암호 일치 검사
+		int count = boardService.selectNBoardPass(vo); // 1 = true
+		
+		if(count == 1) {
+			result = boardService.deleteNBoard(vo); 
+		}else if(count == 0) {
+			result = -1;
+		}
+	
+		
+		
+		return result+"";
+	}
 	
 }

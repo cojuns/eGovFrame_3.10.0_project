@@ -62,6 +62,24 @@ $(function(){
 	
 })
 
+function openDeletePopup(unq) {
+    var popupWidth = 600;
+    var popupHeight = 400;
+
+    // 화면의 중앙 위치 계산
+    var windowWidth = window.screen.width;
+    var windowHeight = window.screen.height;
+    var popupLeft = (windowWidth - popupWidth) / 2;
+    var popupTop = (windowHeight - popupHeight) / 2;
+
+    // 팝업 창 옵션 설정
+    var popupOptions = "width=" + popupWidth + ",height=" + popupHeight + ",left=" + popupLeft + ",top=" + popupTop + ",scrollbars=no,resizable=no";
+
+    // 팝업 창 열기
+    window.open("passWrite.do?unq=" + unq, "DeletePopup", popupOptions);
+}
+
+
 
 //jquery 방식
 function fn_submit() {
@@ -117,6 +135,9 @@ function fn_submit() {
 		}
 		
 	});
+	
+
+
 	
 	
 // 자바스크립트
@@ -175,7 +196,8 @@ function fn_submit() {
 		<th colspan="2">
 		<button type="button" onclick="location='boardList.do'">목록</button>
 		<button type="button" onclick="location='boardModifyWrite.do?unq=${boardVO.unq}'">수정</button>
-		<button type="button" onclick="location='passWrite.do?unq=${boardVO.unq}'">삭제</button>
+		<button type="button" onclick="openDeletePopup(${boardVO.unq})">삭제</button>
+
 		</th>
 		
 	</tr>
