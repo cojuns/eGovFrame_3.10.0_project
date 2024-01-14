@@ -16,7 +16,71 @@
       changeMonth: true,
       changeYear: true
     });
-  } );
+    
+    $("#btn_submit").click(function(){
+    	
+    	var userid = $("#userid").val();
+    	var pass = $("#pass").val();
+    	var name = $("#name").val();
+    	
+    	userid = $.trim(userid);
+    	pass = $.trim(pass);
+    	name = $.trim(name);
+    	
+    	if(userid == ""){
+    		alert("아이디를 입력해주세요.");
+    		$("#userid").focus();
+    		return false;
+    	}
+    	
+    	if(pass == ""){
+    		alert("비밀번호를 입력해주세요.");
+    		$("#pass").focus();
+    		return false;
+    	}
+    	
+    	if(name == ""){
+    		alert("이름을 입력해주세요.");
+    		$("#name").focus();
+    		return false;
+    	}
+    	
+    	// var(userid = $.trim(userid);)
+    	$("#userid").val(userid);
+    	$("#pass").val(pass);
+    	$("#name").val(name);
+    	
+    	
+    	var formData = $("#frm").serialize();
+    	
+    	$.ajax({ 
+    		
+    		type:"POST",
+    		data:formData,
+    		url:"memberWriteSave.do",
+    		dataType:"text", // 리턴 타입 
+    		
+    		success:function(result){ // controller에서 => "ok"값을 던져줬으면 성공
+    			
+    			if(result == "ok"){
+    				alert("회원가입 완료");
+    				location="loginWrite.do"
+    			}else{
+    				alert("회원가입 실패");
+    			}
+    			
+    		},
+    		error:function() { // 장애발생
+    			
+    			alert("오류발생")
+    			
+    		}
+    		
+    	});
+    	
+    });
+    
+  });
 </script>
 
 </head>
@@ -129,7 +193,7 @@ caption{
 </table>
 
 <div class="div_button">
-	<button type="submit">저장</button>
+	<button type="button" id="btn_submit">저장</button>
 	<button type="reset">취소</button>
 </div>
 

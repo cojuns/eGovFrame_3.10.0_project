@@ -80,7 +80,8 @@ function fn_submit() {
 	$("#pass").val($.trim($("#pass").val()) );
 	
 	
-// ajax(비동기전송방식의 기능을 가지고 있는 jquery의 함수)
+// ajax(비동기전송방식의 기능을 가지고 있는 jquery의 함수)0
+// form에 데이터를 다가져옴
 	var formData = $("#frm").serialize();
 	
 	$.ajax({ 
