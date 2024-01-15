@@ -18,7 +18,8 @@
 							phone, 
 							gender, 
 							zipcode, 
-							address 
+							address,
+							address2 
 							)
 					VALUES( #userid#, 
 							#pass#, 
@@ -27,7 +28,8 @@
 							#phone#, 
 							#gender#, 
 							#zipcode#, 
-							#address# 
+							#address#,
+							#address2# 
 							)
 					
 	
@@ -38,6 +40,42 @@
 		SELECT COUNT(*) 
 			FROM member
 				WHERE userid = #userid#
+	
+	</select>
+	
+<!-- 	
+
+	오라클
+	<select id="memberDAO.selectPostList" resultClass="egovMap">
+	
+		SELECT  '[' || a1 || ']' ||
+				' ' || a2 || 
+				' ' || a3 || 
+				' ' || a4 || 
+				' ' || a5 || 
+				' ' || a6 || 
+				' ' || a7 || 
+				' ' || a8  
+					AS addr
+			FROM post
+				WHERE a5 LIKE '%' ||#dong#|| '%'
+				OR	a6 LIKE '%' ||#dong#|| '%'
+	
+	</select> -->
+	
+	<!-- MySQL -->
+		<select id="memberDAO.selectPostList" resultClass="egovMap">
+	
+			SELECT CONCAT('[', a1, '] ',
+			              a3, ' ',
+			              a4, ' ',
+			              a5, ' ',
+			              a6, ' ',
+			              a7) AS addr
+			FROM post
+			WHERE a5 LIKE CONCAT('%',#dong#,'%')
+			OR a6 LIKE CONCAT('%',#dong#,'%')
+
 	
 	</select>
 	

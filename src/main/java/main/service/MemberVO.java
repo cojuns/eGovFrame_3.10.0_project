@@ -10,9 +10,17 @@ public class MemberVO {
 	private String gender;
 	private String zipcode;
 	private String address;
+	private String address2;
 	private String reg;
 	
 	
+	
+	public String getAddress2() {
+		return address2;
+	}
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
 	public String getUserid() {
 		return userid;
 	}

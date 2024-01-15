@@ -15,9 +15,25 @@
 	// 캘린더
   $( function() {
     $( "#birth" ).datepicker({
-      changeMonth: true,
-      changeYear: true
+    		
+    	
+   	    dateFormat: "yy-mm-dd", // 날짜 형식 변경
+      
+    	changeMonth: true,
+        changeYear: true
     });
+    
+    // 우편번호찾기(구)
+    $("#btn_zipcode").click(function(){
+    	
+    	var w = 500;
+    	var h = 100;
+    	var url = "post1.do"
+    	
+    	window.open(url, 'zipcode', 'width='+ w +',height=' + h)
+    	
+    });
+    
     
     var isIdChecked = false; // 아이디 중복 체크 상태를 저장하는 변수
     
@@ -164,6 +180,9 @@ th,td {
 	line-height:2.0;
 
 }
+th {
+	width: 50px;
+}
 .div_button{
 	width:600px;
 	text-align:center;
@@ -195,7 +214,7 @@ caption{
 	</tr>
 
 </table>
-<form id="frm">
+<form id="frm" name="frm">
 <table>
 
 	<caption>회원가입 폼</caption>
@@ -246,9 +265,10 @@ caption{
 		<th><label for="address">주소</label></th>
 		<td>
 		<input type="text" name="zipcode" id="zipcode" />
-		<button type="button">우편번호찾기</button>
+		<button type="button" id="btn_zipcode">우편번호찾기</button>
 		<br>
-		<input type="text" name="address" id="address" />
+		<input type="text" name="address" id="address" style="width: 400px"/>
+		<input type="text" name="address2" id="address2" style="width: 400px"/>
 		</td>
 	</tr>
 	
