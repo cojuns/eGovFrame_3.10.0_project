@@ -28,4 +28,6 @@ public interface BoardService {
 	// 삭제처리
 	public int deleteNBoard(BoardVO vo) throws Exception;
 	
+	// 
+	
 }

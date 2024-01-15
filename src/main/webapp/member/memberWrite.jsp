@@ -169,14 +169,14 @@ caption{
 	<tr>
 		<th><label for="birth">생년월일</label></th>
 		<td>
-		<input type="text" name="birth" id="birth" readonly/>
+		<input type="text" name="birth" id="birth" />
 		</td>
 	</tr>
 	
 	<tr>
 		<th><label for="phone">연락처</label></th>
 		<td>
-		<input type="text" name="phone" id="phone" readonly/>(예:010-1234-1234)
+		<input type="text" name="phone" id="phone" />(예:010-1234-1234)
 		</td>
 	</tr>
 	

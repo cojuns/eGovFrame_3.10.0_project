@@ -10,4 +10,5 @@
 	
 	<sqlMap resource="egovframework/sqlmap/Board_SQL.xml"/>
 	
+	<sqlMap resource="egovframework/sqlmap/Member_SQL.xml"/>
 </sqlMapConfig>
