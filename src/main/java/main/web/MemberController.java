@@ -40,4 +40,18 @@ public class MemberController {
 		return message;
 	}
 	
+	@RequestMapping("/idCheck.do")
+	@ResponseBody
+	public String selectMemberIdCheck(MemberVO vo) throws Exception{
+		
+		String message = "";
+		int count = memberService.selectMemberIdCheck(vo.getUserid());
+		
+		if(count == 0) {
+			message = "ok";
+		}
+		
+		return message;
+	}
+	
 }

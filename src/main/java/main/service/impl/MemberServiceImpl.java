@@ -20,4 +20,10 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.insertMember(vo);
 	}
 
+	@Override
+	public int selectMemberIdCheck(String userid) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDAO.selectMemberIdCheck(userid);
+	}
+
 }

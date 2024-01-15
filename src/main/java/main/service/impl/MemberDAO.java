@@ -13,5 +13,10 @@ public class MemberDAO extends EgovAbstractDAO {
 		// TODO Auto-generated method stub
 		return (String) insert("memberDAO.insertMember", vo);
 	}
+
+	public int selectMemberIdCheck(String userid) {
+		// TODO Auto-generated method stub
+		return (int) select("memberDAO.selectMemberIdCheck", userid);
+	}
 	
 }

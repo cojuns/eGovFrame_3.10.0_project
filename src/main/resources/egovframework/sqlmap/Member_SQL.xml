@@ -32,6 +32,13 @@
 					
 	
 	</insert>
-
+	
+	<select id="memberDAO.selectMemberIdCheck" resultClass="java.lang.Integer">
+	
+		SELECT COUNT(*) 
+			FROM member
+				WHERE userid = #userid#
+	
+	</select>
 	
 </sqlMap>
